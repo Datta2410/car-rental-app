@@ -52,3 +52,13 @@ exports.getAvailCars = (req, res, next) => {
             })
         })
 }
+
+exports.updateAvail = (req, res, next) => {
+    Car.findByIdAndUpdate(req.body._id, {status: "Unavailable"})
+        .then((result) => res.status(201).json(result))
+        .catch(err => {
+            res.status(500).json({
+                error: err,
+            })
+        })
+}
